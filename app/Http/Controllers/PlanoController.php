@@ -7,6 +7,8 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 //use thiagoalessio\TesseractOCR\TesseractOCR;
 use JFuentesTgn\OcrSpace\OcrAPI;
+use Eastwest\Json\Facades\Json;
+
 class PlanoController extends Controller
 {
     //
@@ -106,12 +108,15 @@ class PlanoController extends Controller
             /*
             $strings = (new TesseractOCR('C:\xampp\htdocs\sistema-laravel\public\planos'.'\a'.$name))->userWords('C:\xampp\htdocs\sistema-laravel\public\listado-general.txt')
             ->run();
-            $vowels = array("   ", "  ", "  ", "\n\n","\n");
-            $strings = str_replace($vowels, " ", $strings);
-            $array_palabras = explode(" ", $strings);
-            $anio = array_pop( $array_palabras );
             */
-            return $response;
+            //return $response; 
+            $pos = strpos($response, "ParsedText");
+            $res = substr($response, $pos+13);
+            $pos2 = strpos($res, "ErrorMessage");
+            $res = substr($res, 0,$pos2-3); 
+            $array = explode('\r\n', $res);
+
+            return $array;
 
             // return 1;
             //$producto->img_producto = $name;    

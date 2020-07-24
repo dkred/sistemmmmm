@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "alimranahmed/laraocr": "^1.0",
+        "eastwest/json": "^3.0",
         "fideloper/proxy": "^4.0",
         "jfuentestgn/ocr-space": "dev-master",
         "laravel/framework": "^6.2",
